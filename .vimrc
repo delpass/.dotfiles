@@ -34,7 +34,7 @@ Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 Plugin 'othree/xml.vim'
 "Plugin 'http://dwsharp.users.sourceforge.net/vim/ftplugin/php.vim' " php plugin
-
+Plugin 'benmills/vimux'
 call vundle#end()            		" required
 filetype on
 filetype plugin on
