@@ -1,0 +1,21 @@
+# vim: ft=zsh
+
+# ls
+if [[ "$PLATFORM" == "linux" ]]; then
+    alias ls='ls --color=auto'
+elif [[ "$PLATFORM" == 'macos' ]]; then
+    alias ls='ls -G'
+fi
+
+alias ll='ls -l'
+
+# git
+alias gst='git status'
+
+# Global aliases
+alias -g NO='&> /dev/null'
+alias -g NE='2> /dev/null'
+
+alias -g HE='2>>( sed -e "s/.*/$fg_bold[red]&$reset_color/" 1>&2 )' # Highlight errors
+
+alias -g X='| xargs'
