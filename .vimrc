@@ -6,6 +6,7 @@ filetype off                  " required
 "=====================================================
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
@@ -13,6 +14,7 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
+Plugin 'Xuyuanp/nerdtree-git-plugin'           " NERD Tree Git support
 
 "------------------=== Other ===----------------------
 Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
@@ -79,9 +81,9 @@ else
 endif
 else
 " терминал?
-  colorscheme myterm
+  colorscheme saff
 endif
-
+colorscheme saff
 tab sball
 set switchbuf=useopen
 
@@ -128,7 +130,9 @@ set laststatus=2
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " TagBar настройки
 map <F4> :TagbarToggle<CR>
@@ -139,6 +143,19 @@ let g:tagbar_autofocus = 0 " автофокус на Tagbar при открыт�
 map <F3> :NERDTreeToggle<CR>
 "игноррируемые файлы с расширениями
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']  
+let g:NERDTreeShowGitStatus = 1
+let s:NERDTreeIndicatorMap = {
+            \ "Modified" : "*",
+            \ "Staged" : "+",
+            \ "Untracked" : "!",
+            \ "Renamed" : "»",
+            \ "Unmerged" : "=",
+            \ "Deleted" : "x",
+            \ "Dirty" : "X",
+            \ "Clean" : "V",
+            \ "Unknown" : "?"
+            \ }
+
 
 " TaskList настройки
 map <F2> :TaskList<CR> 	   " отобразить список тасков на F2
