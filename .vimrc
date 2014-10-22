@@ -86,6 +86,13 @@ if has("gui_running")
 "" терминал?
 "  colorscheme saff
 endif
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
 colorscheme jellybeans
 "set colorcolumn=120
 tab sball
@@ -247,9 +254,15 @@ nnoremap <leader>Tj :set ft=javascript<CR>
 nnoremap <leader>Tc :set ft=css<CR>
 nnoremap <leader>Td :set ft=django<CR>
 
-nnoremap <C-S-Left> :tabp<CR>
-nnoremap <C-S-Right> :tabn<CR>
-
+"nnoremap <C-S-Left> :tabp<CR>
+"nnoremap <C-S-Right> :tabn<CR>
+" tab navigation like firefox
+"nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <S-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+"inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <S-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
 "=====================================================
 " Languages support
 "=====================================================
