@@ -21,6 +21,7 @@ Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
 Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
+Plugin 'tpope/vim-fugitive'     " airline gin integration
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager
@@ -37,6 +38,7 @@ Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 Plugin 'othree/xml.vim'
 "Plugin 'http://dwsharp.users.sourceforge.net/vim/ftplugin/php.vim' " php plugin
 Plugin 'benmills/vimux'
+Plugin 'jmcantrell/vim-virtualenv'
 call vundle#end()            		" required
 filetype on
 filetype plugin on
@@ -51,6 +53,7 @@ aunmenu Help.
 aunmenu Window.
 let no_buffers_menu=1
 set mousemodel=popup
+set t_Co=256
 
 set ruler
 set completeopt-=preview
@@ -72,18 +75,19 @@ if has("gui_running")
 " autocmd vimenter * if !argc() | NERDTree | endif
 
 " на маке vim?
-if has("mac")
-  set guifont=Consolas:h13
-  set fuoptions=maxvert,maxhorz
-else
-" дефолтный GUI
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 10
+"if has("mac")
+"  set guifont=Consolas:h13
+"  set fuoptions=maxvert,maxhorz
+"else
+"" дефолтный GUI
+"  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 10
+"endif
+"else
+"" терминал?
+"  colorscheme saff
 endif
-else
-" терминал?
-  colorscheme saff
-endif
-colorscheme saff
+colorscheme jellybeans
+"set colorcolumn=120
 tab sball
 set switchbuf=useopen
 
@@ -130,9 +134,19 @@ set laststatus=2
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+""let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#branch#enabled = 1 
+let g:airline#extensions#tagbar#enabled = 1 
+let g:airline#extensions#virtualenv#enabled = 1 
+let g:airline#extensions#tabline#enabled = 1
+""let g:airline#extensions#tabline#formatter = 'unique_tail'
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_left_sep='>'
+"let g:airline_right_sep='<'
+let g:airline_detect_modified=1
 
 " TagBar настройки
 map <F4> :TagbarToggle<CR>
@@ -183,6 +197,7 @@ let g:pymode_doc_key = 'K'
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_ignore="E501,W601,C0110"
+let g:pymode_options_max_line_length = 119
 " провека кода после сохранения
 let g:pymode_lint_write = 1
 
@@ -231,6 +246,9 @@ nnoremap <leader>Tp :set ft=python<CR>
 nnoremap <leader>Tj :set ft=javascript<CR>
 nnoremap <leader>Tc :set ft=css<CR>
 nnoremap <leader>Td :set ft=django<CR>
+
+nnoremap <C-S-Left> :tabp<CR>
+nnoremap <C-S-Right> :tabn<CR>
 
 "=====================================================
 " Languages support
