@@ -20,5 +20,3 @@ alias -g HE='2>>( sed -e "s/.*/$fg_bold[red]&$reset_color/" 1>&2 )' # Highlight 
 
 alias -g X='| xargs'
 
-alias tmux="TERM=xterm-256color tmux"
-
