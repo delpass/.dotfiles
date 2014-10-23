@@ -19,8 +19,8 @@ commands = [
 
 
 def install():
-    if os.path.exists(home + '.dotfiles'):
-       print "already installed, please use: update"
+    if os.path.islink(home + '.vimrc'):
+       print "already installed, please use: git pull for update"
        return
     # rename old config files if exists
     for f in backup_files:
@@ -38,8 +38,9 @@ def install():
         c(cmd, shell=True)
 
     print u'''
-    Выполните в vim :PluginInstall
-    Установка выполнена
+    please run in vim :PluginInstall
+    Install complete
+    Install packages: sudo apt-get install vim tmux zsh i3
     '''
 
 
