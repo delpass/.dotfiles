@@ -10,7 +10,8 @@ backup_files = [
     '.vim',
     '.tmux.conf',
     '.zshrc',
-    '.zsh'
+    '.zsh',
+    '.i3',
 ]
 commands = [
     'git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim'
