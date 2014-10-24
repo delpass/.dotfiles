@@ -18,7 +18,8 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'           " NERD Tree Git support
 
 "------------------=== Other ===----------------------
 Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
-Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
+"Plugin 'bling/vim-bufferline'
+"Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
 Plugin 'tpope/vim-fugitive'     " airline gin integration
@@ -36,9 +37,12 @@ Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 Plugin 'othree/xml.vim'
-"Plugin 'http://dwsharp.users.sourceforge.net/vim/ftplugin/php.vim' " php plugin
 Plugin 'benmills/vimux'
 Plugin 'jmcantrell/vim-virtualenv'
+" --- PHP ---
+Plugin 'php.vim-for-php5'
+Plugin 'grep.vim'
+"Plugin 'http://dwsharp.users.sourceforge.net/vim/ftplugin/php.vim' " php plugin
 call vundle#end()            		" required
 filetype on
 filetype plugin on
@@ -125,7 +129,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-"  при переходе за границу в 80 символов в Ruby/Python/js/C/C++ подсвечиваем на темном фоне текст
+"  при переходе за границу в 120 символов в Ruby/Python/js/C/C++ подсвечиваем на темном фоне текст
 augroup vimrc_autocmds
     autocmd!
     autocmd FileType ruby,python,javascript,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
@@ -135,12 +139,26 @@ augroup END
 
 " указываем каталог с настройками SnipMate
 let g:snippets_dir = "~/.vim/vim-snippets/snippets"
+" ===============================================
+" --- Buffers ---
+" ===============================================
+set hidden
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
 
 " настройки Vim-Airline
 set laststatus=2
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 ""let g:airline#extensions#tabline#formatter = 'unique_tail'
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -154,6 +172,9 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_left_sep='>'
 "let g:airline_right_sep='<'
 let g:airline_detect_modified=1
+
+" Buffeline
+"let g:bufferline_echo = 0
 
 " TagBar настройки
 map <F4> :TagbarToggle<CR>
@@ -176,7 +197,7 @@ let s:NERDTreeIndicatorMap = {
             \ "Clean" : "V",
             \ "Unknown" : "?"
             \ }
-
+let g:NERDTreeUpdateOnWrite = 0
 
 " TaskList настройки
 map <F2> :TaskList<CR> 	   " отобразить список тасков на F2
@@ -250,6 +271,7 @@ inoremap <C-space> <C-x><C-o>
 " переключение между синтаксисами
 nnoremap <leader>Th :set ft=htmljinja<CR>
 nnoremap <leader>Tp :set ft=python<CR>
+nnoremap <leader>TP :set ft=php<CR>
 nnoremap <leader>Tj :set ft=javascript<CR>
 nnoremap <leader>Tc :set ft=css<CR>
 nnoremap <leader>Td :set ft=django<CR>
@@ -266,6 +288,9 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 "=====================================================
 " Languages support
 "=====================================================
+"Bufferline 
+"autocmd VimEnter * let &statusline='%{bufferline#refresh_status()}' .bufferline#get_status_string()
+
 " --- Python ---
 "autocmd FileType python set completeopt-=preview " раскомментируйте, в случае, если не надо, чтобы jedi-vim показывал документацию по методу/классу
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
@@ -296,3 +321,6 @@ autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/sc
 " --- CSS ---
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
+" --- MySQL ---
+autocmd BufRead *.sql set filetype=mysql
