@@ -57,6 +57,7 @@ aunmenu Help.
 aunmenu Window.
 let no_buffers_menu=1
 set mousemodel=popup
+set mouse=a
 set t_Co=256
 
 set ruler
@@ -264,7 +265,7 @@ let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 " проверка кода в соответствии с PEP8 через <leader>8
 autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
-
+nnoremap <Tab> <C-w>w
 " автокомплит через <Ctrl+Space>
 inoremap <C-space> <C-x><C-o>
 
