@@ -12,6 +12,7 @@ backup_files = [
     '.zshrc',
     '.zsh',
     '.i3',
+    '.gitconfig',
 ]
 commands = [
     'git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim'

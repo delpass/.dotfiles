@@ -25,10 +25,12 @@ Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and m
 Plugin 'tpope/vim-fugitive'     " airline gin integration
 
 "--------------=== Snippets support ===---------------
-Plugin 'garbas/vim-snipmate'		" Snippets manager
-Plugin 'MarcWeber/vim-addon-mw-utils'	" dependencies #1
-Plugin 'tomtom/tlib_vim'		" dependencies #2
-Plugin 'honza/vim-snippets'		" snippets repo
+"Plugin 'garbas/vim-snipmate'		" Snippets manager
+"Plugin 'MarcWeber/vim-addon-mw-utils'	" dependencies #1
+"Plugin 'tomtom/tlib_vim'		" dependencies #2
+"Plugin 'honza/vim-snippets'		" snippets repo
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 "---------------=== Languages support ===-------------
 " --- Python ---
@@ -174,6 +176,11 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_right_sep='<'
 let g:airline_detect_modified=1
 
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Buffeline
 "let g:bufferline_echo = 0
 
@@ -234,8 +241,8 @@ let g:pymode_lint_write = 1
 let g:pymode_virtualenv = 1
 
 " установка breakpoints
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
+" let g:pymode_breakpoint = 1
+" let g:pymode_breakpoint_key = '<leader>b'
 
 " подстветка синтаксиса
 let g:pymode_syntax = 1
@@ -247,8 +254,8 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_folding = 0
 
 " возможность запускать код
-let g:pymode_run = 0
-
+let g:pymode_run = 0 
+" let g:pymode_run_bind = '<F9>'
 
 " Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
@@ -258,7 +265,11 @@ let g:jedi#popup_select_first = 0
 "=====================================================
 " ConqueTerm
 " запуск интерпретатора на F5
+let g:ConqueTerm_Color = 1
+let g:ConqueTerm_ExecFileKey = '<F9>'
 nnoremap <F5> :ConqueTermSplit ipython<CR>
+nnoremap <leader>s :split<CR>
+nnoremap <leader>v :vsplit<CR>
 " а debug-mode на <F6>
 nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
 let g:ConqueTerm_StartMessages = 0
