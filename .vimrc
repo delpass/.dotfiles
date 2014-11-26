@@ -15,7 +15,7 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
 Plugin 'Xuyuanp/nerdtree-git-plugin'           " NERD Tree Git support
-
+" Plugin 'project.tar.gz'       
 "------------------=== Other ===----------------------
 Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
 "Plugin 'bling/vim-bufferline'
