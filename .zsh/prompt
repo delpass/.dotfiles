@@ -10,9 +10,9 @@ case $TERM in
     # Write some info to terminal title.
     # This is seen when the shell prompts for input.
     function precmd() {
-      #print -Pn "\e]0;zsh%L %(1j,%j job%(2j|s|); ,)%~\a"
-      print -Pn "\e]0;%n@%m: \a"
-      print ""
+      # print -Pn "\e]0;zsh%L %(1j,%j job%(2j|s|); ,)%~\a"
+      print -Pn "\e]0;%n@%m\a"
+      # print ""
     }
     # Write command and args to terminal title.
     # This is seen while the shell waits for a command to complete.
@@ -31,6 +31,7 @@ else
     precmd() {
         psvar=()
 
+        print -Pn "\e]0;%n@%m\a"
         vcs_info
         [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
     }
