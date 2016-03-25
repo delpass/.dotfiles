@@ -16,14 +16,18 @@ Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
 "Plugin 'Xuyuanp/nerdtree-git-plugin'           " NERD Tree Git support
 " Plugin 'project.tar.gz'       
+Bundle 'L9'
+Bundle 'FuzzyFinder'
 "------------------=== Other ===----------------------
 Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline-themes' " Themes
 "Plugin 'bling/vim-bufferline'
 "Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
 Plugin 'tpope/vim-fugitive'     " airline gin integration
-
+Plugin 'Chiel92/vim-autoformat' " vim autoformat https://github.com/Chiel92/vim-autoformat
+Plugin 'scrooloose/syntastic'
 "--------------=== Snippets support ===---------------
 "Plugin 'garbas/vim-snipmate'		" Snippets manager
 "Plugin 'MarcWeber/vim-addon-mw-utils'	" dependencies #1
@@ -41,8 +45,10 @@ Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 Plugin 'othree/xml.vim'
 Plugin 'benmills/vimux'
 Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/django.vim'
 " --- PHP ---
-Plugin 'php.vim-for-php5'
+"Plugin 'php.vim-for-php5'
 Plugin 'grep.vim'
 "Plugin 'http://dwsharp.users.sourceforge.net/vim/ftplugin/php.vim' " php plugin
 call vundle#end()            		" required
@@ -101,7 +107,7 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
 endif
 colorscheme jellybeans
-"set colorcolumn=120
+set colorcolumn=100
 tab sball
 set switchbuf=useopen
 
@@ -210,6 +216,16 @@ let g:NERDTreeUpdateOnWrite = 0
 " TaskList настройки
 map <F2> :TaskList<CR> 	   " отобразить список тасков на F2
 
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
+
+" Autoformat
+" let g:formatterpath = [ '/usr/bin/', 
+
 " Работа буфферами
 map <C-q> :bd<CR> 	   " CTRL+Q - закрыть текущий буффер
 
@@ -232,8 +248,8 @@ let g:pymode_doc_key = 'K'
 " проверка кода
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_ignore="E501,W601,C0110"
-let g:pymode_options_max_line_length = 119
+let g:pymode_lint_ignore="E121,E402"
+let g:pymode_options_max_line_length = 99
 " провека кода после сохранения
 let g:pymode_lint_write = 1
 
